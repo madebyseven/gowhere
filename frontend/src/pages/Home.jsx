@@ -5,17 +5,20 @@ import { useEffect, useRef, useState } from "react";
 const ShuffleHero = () => {
   return (
     <section className="mx-auto flex max-w-7xl grid grid-cols-1 items-center gap-8 p-16 lg:px-8">
-      <div>
+      <div className="grid-cols-1 items-center ">
         <span className="block mb-4 text-xs md:text-sm text-indigo-500 font-medium">
           Better every day
         </span>
         <h3 className="text-4xl md:text-6xl font-semibold text-gray-900">
           Let's change it up a bit
         </h3>
-        <p className="text-base md:text-lg text-gray-900 my-4 md:my-6">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam nobis in
-          error repellat voluptatibus ad.
+
+        <p className="mx-auto text-base md:text-lg text-gray-900 my-4 md:my-6 sm:max-w-2xl">
+          Welcome to <strong>gowhere!</strong> Jump right in and explore our
+          many campgrounds. Feel free to share some of your own experience and
+          comment on others!
         </p>
+
         <button className="bg-indigo-500 text-white font-medium py-2 px-4 rounded transition-all hover:bg-indigo-600 active:scale-95">
           Join us and share your moments
         </button>
