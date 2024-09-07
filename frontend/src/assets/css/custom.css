@@ -1,0 +1,8 @@
+button:focus,
+button:focus-visible {
+  outline: unset !important;
+}
+
+button:hover {
+  border-color: unset !important;
+}
