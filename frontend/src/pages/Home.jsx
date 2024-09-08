@@ -2,7 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
+import Modal from "../components/common/Modal";
+
 const ShuffleHero = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <section className="mx-auto flex max-w-7xl grid grid-cols-1 items-center gap-8 p-16 lg:px-8">
       <div className="grid-cols-1 items-center ">
@@ -18,10 +22,15 @@ const ShuffleHero = () => {
           many campgrounds. Feel free to share some of your own experience and
           comment on others!
         </p>
-
-        <button className="bg-indigo-500 text-white font-medium py-2 px-4 rounded transition-all hover:bg-indigo-600 active:scale-95">
-          Join us and share your moments
-        </button>
+        <div>
+          <button
+            className="bg-indigo-500 text-white font-medium py-2 px-4 rounded transition-all hover:bg-indigo-600 active:scale-95"
+            onClick={() => setIsOpen(true)}
+          >
+            Join us, share moments!
+          </button>
+          <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+        </div>
       </div>
       <ShuffleGrid />
     </section>
