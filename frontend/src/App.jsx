@@ -1,20 +1,22 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
+import { Outlet } from "react-router-dom";
 
 import MainHeader from "./components/global/MainHeader";
 import MainFooter from "./components/global/MainFooter";
-import Home from "./pages/Home";
 
 import "./App.css";
+import "./assets/css/custom.css";
 
-function App() {
+const App = () => {
   return (
-    <Router>
+    <>
       <MainHeader />
-      <Home />
+      <div id="detail">
+        <Outlet />
+      </div>
       <MainFooter />
-    </Router>
+    </>
   );
-}
+};
 
 export default App;
