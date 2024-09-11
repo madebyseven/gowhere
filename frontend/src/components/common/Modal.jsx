@@ -1,33 +1,87 @@
-import React, { useState } from "react";
+import React, { useCallback, useReducer, useState } from "react";
 import ReactDom from "react-dom";
 
 import Input from "./Input";
 import ButtonBtn from "./ButtonBtn";
-// import {
-//   VALIDATOR_EMAIL,
-//   VALIDATOR_MINLENGTH,
-//   VALIDATOR_REQUIRE,
-// } from "../../util/validators";
+import {
+  VALIDATOR_EMAIL,
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_REQUIRE,
+} from "../../util/validators";
 // import { useForm } from "../../hooks/form-hooks";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@headlessui/react";
 
-// const [formState, inputHandler, setFormData] = useForm(
-//   {
-//     email: {
-//       value: "",
-//       isValid: false,
-//     },
-//     password: {
-//       value: "",
-//       isValid: false,
-//     },
-//   },
-//   false
-// );
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case "INPUT_CHANGE":
+      let formIsValid = true;
+      for (const inputId in state.inputs) {
+        if (!state.inputs[inputId]) {
+          continue;
+        }
+
+        if (inputId === action.inputId) {
+          formIsValid = formIsValid && action.isValid;
+        } else {
+          formIsValid = formIsValid && state.inputs[inputId].isValid;
+        }
+      }
+      return {
+        ...state,
+        inputs: {
+          ...state.inputs,
+          [action.inputId]: { value: action.value, isValid: action.isValid },
+        },
+        isValid: formIsValid,
+      };
+    case "SET_DATA":
+      return {
+        inputs: action.inputs,
+        isValid: action.formIsValid,
+      };
+
+    default:
+      return state;
+  }
+};
 
 const Modal = ({ isOpen, setIsOpen }, props) => {
+  const [formState, dispatch] = useReducer(formReducer, {
+    inputs: {
+      firstname: {
+        value: "",
+        isValid: false,
+      },
+      lastname: {
+        value: "",
+        isValid: false,
+      },
+      email: {
+        value: "",
+        isValid: false,
+      },
+      password: {
+        value: "",
+        isValid: false,
+      },
+    },
+    isValid: false,
+  });
+
+  const inputHandler = useCallback(
+    (id, value, isValid) => {
+      dispatch({
+        type: "INPUT_CHANGE",
+        value: value,
+        isValid: isValid,
+        inputId: id,
+      });
+    },
+    [dispatch]
+  );
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -71,21 +125,23 @@ const Modal = ({ isOpen, setIsOpen }, props) => {
                 <div className="grid gap-6 mb-6 md:grid-cols-2">
                   <Input
                     element="input"
-                    id="first-name"
+                    id="firstname"
                     type="text"
                     label="First name"
                     placeholder="First name"
+                    validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter your First name"
-                    // onInput={inputHandler}
+                    onInput={inputHandler}
                   />
                   <Input
                     element="input"
-                    id="last-name"
+                    id="lastname"
                     type="text"
                     label="Last name"
                     placeholder="Last name"
+                    validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter your Last name"
-                    // onInput={inputHandler}
+                    onInput={inputHandler}
                   />
                 </div>
                 <div className="grid gap-6 mb-6 md:grid-cols-1">
@@ -95,6 +151,7 @@ const Modal = ({ isOpen, setIsOpen }, props) => {
                     type="text"
                     label="Email"
                     placeholder="johndoe@youremail.com"
+                    validators={[VALIDATOR_EMAIL()]}
                     errorText="Please enter a valid email"
                     // onInput={inputHandler}
                   />
@@ -104,12 +161,18 @@ const Modal = ({ isOpen, setIsOpen }, props) => {
                     type="password"
                     label="Password"
                     placeholder="L3t'sGoSomewhere!"
-                    errorText="Please enter a valid password, at least 6 characters."
+                    validators={[VALIDATOR_MINLENGTH(9)]}
+                    errorText="Please enter a valid password, at least 9 characters."
                     // onInput={inputHandler}
                   />
                 </div>
                 <div className="grid gap-6 mb-6 md:grid-cols-2">
-                  <ButtonBtn type="submit" label="Submit" disabled="" />
+                  <ButtonBtn
+                    type="submit"
+                    label="Submit"
+                    disabled={!formState.isValid}
+                  />
+
                   <button
                     onClick={() => setIsOpen(false)}
                     className="bg-transparent hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
