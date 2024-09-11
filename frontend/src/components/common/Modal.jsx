@@ -1,7 +1,31 @@
 import React, { useState } from "react";
 import ReactDom from "react-dom";
 
+import Input from "./Input";
+import ButtonBtn from "./ButtonBtn";
+// import {
+//   VALIDATOR_EMAIL,
+//   VALIDATOR_MINLENGTH,
+//   VALIDATOR_REQUIRE,
+// } from "../../util/validators";
+// import { useForm } from "../../hooks/form-hooks";
+
 import { AnimatePresence, motion } from "framer-motion";
+import { Button } from "@headlessui/react";
+
+// const [formState, inputHandler, setFormData] = useForm(
+//   {
+//     email: {
+//       value: "",
+//       isValid: false,
+//     },
+//     password: {
+//       value: "",
+//       isValid: false,
+//     },
+//   },
+//   false
+// );
 
 const Modal = ({ isOpen, setIsOpen }, props) => {
   return (
@@ -27,7 +51,7 @@ const Modal = ({ isOpen, setIsOpen }, props) => {
             >
               {/* <div className="bg-white w-16 h-16 mb-2 rounded-full text-3xl text-indigo-600 grid place-items-center mx-auto"></div> */}
               <h3 className="text-3xl font-bold text-center mb-2">
-                One more thing!
+                Register
                 {props.header}
               </h3>
               <p className="text-center mb-6">
@@ -44,24 +68,74 @@ const Modal = ({ isOpen, setIsOpen }, props) => {
                 <div className={`modal__content ${props.contentClass}`}>
                   {props.children}
                 </div>
+                <div className="grid gap-6 mb-6 md:grid-cols-2">
+                  <Input
+                    element="input"
+                    id="first-name"
+                    type="text"
+                    label="First name"
+                    placeholder="First name"
+                    errorText="Please enter your First name"
+                    // onInput={inputHandler}
+                  />
+                  <Input
+                    element="input"
+                    id="last-name"
+                    type="text"
+                    label="Last name"
+                    placeholder="Last name"
+                    errorText="Please enter your Last name"
+                    // onInput={inputHandler}
+                  />
+                </div>
+                <div className="grid gap-6 mb-6 md:grid-cols-1">
+                  <Input
+                    element="input"
+                    id="email"
+                    type="text"
+                    label="Email"
+                    placeholder="johndoe@youremail.com"
+                    errorText="Please enter a valid email"
+                    // onInput={inputHandler}
+                  />
+                  <Input
+                    element="input"
+                    id="password"
+                    type="password"
+                    label="Password"
+                    placeholder="L3t'sGoSomewhere!"
+                    errorText="Please enter a valid password, at least 6 characters."
+                    // onInput={inputHandler}
+                  />
+                </div>
+                <div className="grid gap-6 mb-6 md:grid-cols-2">
+                  <ButtonBtn type="submit" label="Submit" disabled="" />
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="bg-transparent hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
+                  >
+                    Nah, go back
+                  </button>
+                </div>
+
                 <footer
                   className={`modal__footer ${props.footerClass}`}
                 ></footer>
               </form>
-              <div className="flex gap-2">
+              {/* <div className="flex gap-2">
                 <button
                   onClick={() => setIsOpen(false)}
                   className="bg-transparent hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
                 >
                   Nah, go back
                 </button>
-                {/* <button
+                <button
                   onClick={() => setIsOpen(false)}
                   className="bg-white hover:opacity-90 transition-opacity text-indigo-600 font-semibold w-full py-2 rounded"
                 >
                   Understood!
-                </button> */}
-              </div>
+                </button>
+              </div> */}
             </div>
           </motion.div>
         </motion.div>
