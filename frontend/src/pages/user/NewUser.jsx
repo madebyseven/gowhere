@@ -2,7 +2,6 @@ import React, { useCallback, useReducer, useState } from "react";
 
 import Input from "../../components/common/Input";
 import ButtonBtn from "../../components/common/ButtonBtn";
-import Modal from "../../components/common/Modal";
 
 import {
   VALIDATOR_EMAIL,
@@ -131,21 +130,21 @@ const NewUser = (props) => {
             // onInput={inputHandler}
           />
         </div>
-        <ButtonBtn type="submit" label="Submit" disabled={!formState.isValid}>
-          Submit
-        </ButtonBtn>
-        {/* <div className="grid gap-6 mb-6 md:grid-cols-2">
+
+        <div className="container py-2 mx-0 min-w-full flex flex-col items-center">
           <ButtonBtn type="submit" label="Submit" disabled={!formState.isValid}>
             Submit
           </ButtonBtn>
-
-          <button
+          {/* <ButtonBtn
+            type="back"
+            label="Back"
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
             onClick={() => setIsOpen(false)}
-            className="bg-transparent hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
           >
             Nah, go back
-          </button>
-        </div> */}
+          </ButtonBtn> */}
+        </div>
       </form>
       {/* <div className="flex gap-2">
                 <button
