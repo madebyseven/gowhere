@@ -2,7 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
+import ButtonBtn from "../components/common/ButtonBtn";
 import Modal from "../components/common/Modal";
+import Register from "./user/Register";
 
 const ShuffleHero = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +31,25 @@ const ShuffleHero = () => {
           >
             Join us, share moments!
           </button>
-          <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+          <Modal
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            header="Register"
+            desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id aperiam
+        vitae, sapiente ducimus eveniet in velit."
+            footer={
+              <ButtonBtn
+                type="submit"
+                label="Submit"
+                className="button--inverse"
+                onClick={() => setIsOpen(false)}
+              >
+                Nah, go back
+              </ButtonBtn>
+            }
+          >
+            <Register />
+          </Modal>
         </div>
       </div>
       <ShuffleGrid />
