@@ -38,14 +38,12 @@ const ShuffleHero = () => {
             desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id aperiam
         vitae, sapiente ducimus eveniet in velit."
             footer={
-              <ButtonBtn
-                type="back"
-                label="Back"
-                className="button--inverse"
+              <button
+                className="bg-transparent hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
                 onClick={() => setIsOpen(false)}
               >
                 Nah, go back
-              </ButtonBtn>
+              </button>
             }
           >
             <NewUser />

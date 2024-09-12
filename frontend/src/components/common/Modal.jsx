@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@headlessui/react";
 
 const Modal = (props) => {
-  console.log(`props from Modal ${props}`);
+  // console.log(`props from Modal ${props}`);
 
   const { isOpen, setIsOpen } = props;
 
@@ -37,7 +37,7 @@ const Modal = (props) => {
 };
 
 const ModalOverlay = (props) => {
-  console.log(`props from ModalOverlay ${props}`);
+  // console.log(`props from ModalOverlay ${props}`);
 
   return (
     <div className={`"relative z-10" ${props.className}`} style={props.style}>
@@ -52,7 +52,7 @@ const ModalOverlay = (props) => {
           {props.children}
         </div>
 
-        <footer className="grid gap-6 mb-6 md:grid-cols-2">
+        <footer className="container py-2 mx-0 min-w-full flex flex-col items-center">
           {props.footer}
         </footer>
       </form>

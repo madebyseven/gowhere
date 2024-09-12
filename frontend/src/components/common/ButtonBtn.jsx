@@ -8,7 +8,7 @@ const ButtonBtn = (props) => {
   if (props.href) {
     return (
       <a
-        className={`button button--${props.size || "default"} ${
+        className={`bg-white hover:opacity-90 transition-opacity text-indigo-600 font-semibold w-full py-2 rounded ${
           props.inverse && "button--inverse"
         } ${props.danger && "button--danger"}`}
         href={props.href}
@@ -22,9 +22,7 @@ const ButtonBtn = (props) => {
       <Link
         to={props.to}
         exact={props.exact}
-        className={`button button--${props.size || "default"} ${
-          props.inverse && "button--inverse"
-        } ${props.danger && "button--danger"}`}
+        className="bg-transparent hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
       >
         {props.children}
       </Link>
@@ -32,7 +30,7 @@ const ButtonBtn = (props) => {
   }
   return (
     <button
-      className={`button button--${props.size || "default"} ${
+      className={`bg-white hover:opacity-90 transition-opacity text-indigo-600 font-semibold w-full py-2 rounded ${
         props.inverse && "button--inverse"
       } ${props.danger && "button--danger"}`}
       type={props.type}
