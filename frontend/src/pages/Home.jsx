@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import ButtonBtn from "../components/common/ButtonBtn";
 import Modal from "../components/common/Modal";
-import Register from "./user/Register";
+import NewUser from "./user/NewUser";
 
 const ShuffleHero = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,8 +39,8 @@ const ShuffleHero = () => {
         vitae, sapiente ducimus eveniet in velit."
             footer={
               <ButtonBtn
-                type="submit"
-                label="Submit"
+                type="back"
+                label="Back"
                 className="button--inverse"
                 onClick={() => setIsOpen(false)}
               >
@@ -48,7 +48,7 @@ const ShuffleHero = () => {
               </ButtonBtn>
             }
           >
-            <Register />
+            <NewUser />
           </Modal>
         </div>
       </div>

@@ -45,7 +45,7 @@ const formReducer = (state, action) => {
   }
 };
 
-const Register = (props) => {
+const NewUser = (props) => {
   const [formState, dispatch] = useReducer(formReducer, {
     inputs: {
       firstname: {
@@ -131,6 +131,9 @@ const Register = (props) => {
             // onInput={inputHandler}
           />
         </div>
+        <ButtonBtn type="submit" label="Submit" disabled={!formState.isValid}>
+          Submit
+        </ButtonBtn>
         {/* <div className="grid gap-6 mb-6 md:grid-cols-2">
           <ButtonBtn type="submit" label="Submit" disabled={!formState.isValid}>
             Submit
@@ -162,4 +165,4 @@ const Register = (props) => {
   );
 };
 
-export default Register;
+export default NewUser;
